@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f8f5">
+  <meta name="description" content="Trouvez votre prochain logement au Bénin avec Noyau : des annonces vérifiées à Cotonou, Porto-Novo, Abomey-Calavi et ailleurs.">
+  <title>Noyau — Trouvez votre chez-vous au Bénin</title>
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="Noyau, accueil">
+      <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+      <span>Noyau<span class="brand-period">.</span></span>
+    </a>
+    <nav class="main-nav" aria-label="Navigation principale">
+      <a class="nav-link active" href="#accueil">Accueil</a>
+      <a class="nav-link" href="#logements">Explorer</a>
+      <button class="nav-link" id="open-register" type="button">Inscription</button>
+      <button class="nav-link" id="open-login" type="button">Connexion</button>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Activer le thème sombre" title="Changer de thème">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.8A8.4 8.4 0 0 1 8.2 3.9 8.5 8.5 0 1 0 20.2 15.8Z"/></svg>
+      </button>
+      <button class="account-button hidden" id="open-account" type="button">Mon espace</button>
+    </nav>
+    <button class="mobile-menu" id="mobile-menu" type="button" aria-label="Ouvrir le menu" aria-expanded="false">☰</button>
+  </header>
+
+  <main>
+    <section class="hero" id="accueil">
+      <div class="hero-image" role="img" aria-label="Maison contemporaine entourée de verdure"></div>
+      <div class="hero-shade"></div>
+      <div class="hero-content">
+        <p class="eyebrow hero-eyebrow"><span class="eyebrow-dot"></span> VOTRE PROCHAIN CHAPITRE COMMENCE ICI</p>
+        <h1>À la recherche d’un logement ?<br><em>On a ce qu’il vous faut.</em></h1>
+        <p class="hero-copy">Pour vos études, un nouveau départ ou simplement plus de confort : trouvez un lieu de vie qui vous ressemble, partout au Bénin.</p>
+        <a class="button button-light" href="#logements">Découvrir les logements <span aria-hidden="true">↗</span></a>
+        <div class="hero-proof"><div class="avatar-stack"><i>AK</i><i>JM</i><i>SF</i></div><span><strong>+2 400</strong> personnes ont trouvé leur chez-soi</span></div>
+      </div>
+      <div class="hero-note"><span class="note-spark">✳</span><span><strong>Un bon endroit.</strong><br>Une nouvelle histoire.</span></div>
+    </section>
+
+    <section class="city-strip" aria-label="Explorer par ville">
+      <div class="strip-label"><span class="live-dot"></span> EXPLORER PAR VILLE</div>
+      <div class="city-track-wrap"><div class="city-track" id="city-track" aria-label="Villes disponibles"></div></div>
+      <a class="strip-all" href="#logements">Toutes les villes <span aria-hidden="true">↗</span></a>
+    </section>
+
+    <section class="listings-section section-pad" id="logements">
+      <div class="section-heading">
+        <div><p class="eyebrow">LE BON ENDROIT VOUS ATTEND</p><h2>Des lieux à <em>aimer.</em></h2><p class="section-intro">Des logements sélectionnés pour vous aider à vous sentir chez vous, dès le premier jour.</p></div>
+        <a class="text-link" href="#recherche">Comment ça marche <span aria-hidden="true">↗</span></a>
+      </div>
+      <form class="search-panel" id="search-form">
+        <label class="search-field search-location"><span class="field-icon" aria-hidden="true">⌖</span><span class="field-copy"><span class="field-label">OÙ ?</span><select id="city-filter" aria-label="Choisir une ville"><option value="">Toutes les villes</option></select></span></label>
+        <span class="search-divider" aria-hidden="true"></span>
+        <label class="search-field"><span class="field-icon price-icon" aria-hidden="true">₣</span><span class="field-copy"><span class="field-label">BUDGET MAXIMUM</span><span class="budget-input"><input id="budget-filter" type="number" min="0" step="5000" placeholder="Sans limite" inputmode="numeric" aria-label="Budget maximum en francs CFA"><span>FCFA / mois</span></span></span></label>
+        <button class="button search-button" type="submit"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.5"/><path d="m16 16 4.2 4.2"/></svg> Rechercher</button>
+      </form>
+      <div class="results-head"><div><span class="results-count" id="results-count">30</span> logements disponibles</div><label class="sort-control">Trier par <select id="sort-order" aria-label="Ordre de tri"><option value="recommended">Recommandés</option><option value="price-asc">Prix croissant</option><option value="price-desc">Prix décroissant</option></select></label></div>
+      <div class="property-grid" id="property-grid" aria-live="polite"></div>
+      <div class="empty-state hidden" id="empty-state"><span>⌖</span><h3>Aucun logement ne correspond</h3><p>Essayez d’élargir votre budget ou de choisir une autre ville.</p><button class="button button-outline" id="reset-search" type="button">Effacer les filtres</button></div>
+      <div class="more-wrap"><button class="button button-outline" id="show-more" type="button">Voir tous les logements <span aria-hidden="true">↓</span></button></div>
+    </section>
+
+    <section class="promise-section section-pad" id="recherche">
+      <div class="promise-photo"><img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=85" alt="Salon lumineux aménagé avec soin" loading="lazy"><span class="photo-stamp"><span>✳</span> LE BON<br>ENDROIT</span></div>
+      <div class="promise-copy"><p class="eyebrow">LOUER EN TOUTE SÉRÉNITÉ</p><h2>Un logement, oui.<br><em>La tranquillité aussi.</em></h2><p>On sait qu’un logement, c’est bien plus que quatre murs. Chaque annonce vérifiée est contrôlée par notre équipe pour vous aider à faire le bon choix, sans mauvaise surprise.</p><div class="promise-list"><div><span class="promise-check">✓</span><span><strong>Des annonces vérifiées</strong><small>Des logements contrôlés par notre équipe.</small></span></div><div><span class="promise-check">✓</span><span><strong>Un contact simplifié</strong><small>Échangez directement avec les propriétaires.</small></span></div><div><span class="promise-check">✓</span><span><strong>À votre rythme</strong><small>Visitez, comparez, choisissez sereinement.</small></span></div></div><a class="text-link" href="#logements">Trouver mon logement <span aria-hidden="true">↗</span></a></div>
+    </section>
+
+    <section class="owner-banner section-pad">
+      <div><p class="eyebrow">VOUS AVEZ UN BIEN À LOUER ?</p><h2>Votre logement mérite<br>d’être <em>remarqué.</em></h2><p>Publiez une annonce et trouvez le bon locataire, simplement.</p></div>
+      <button class="button button-dark" id="owner-cta" type="button">Déposer une annonce <span aria-hidden="true">↗</span></button>
+      <span class="banner-spark" aria-hidden="true">✳</span>
+    </section>
+  </main>
+
+  <footer class="site-footer"><a class="brand footer-brand" href="#"><span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span><span>Noyau<span class="brand-period">.</span></span></a><span>Le bon endroit pour écrire la suite.</span><span>© 2026 Noyau · Bénin</span><a href="admin.html">Espace administration ↗</a></footer>
+
+  <div class="modal-backdrop hidden" id="modal-backdrop" role="presentation">
+    <section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button class="modal-close" id="modal-close" type="button" aria-label="Fermer">×</button>
+      <div id="modal-content"></div>
+    </section>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
